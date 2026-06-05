@@ -1,0 +1,21 @@
+{
+    "chat.agent.enabled": false,
+    "chat.disableAIFeatures": true,
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/*.code-search": true,
+        "__pycache__": true,
+        ".git": true
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "__pycache__": true,
+    },
+    "editor.formatOnSave": true,
+    "python.terminal.shellIntegration.enabled": true,
+}
