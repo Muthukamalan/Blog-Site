@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conduit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap bar">
+      <a class="brand" href="#/">conduit</a>
+      <nav id="nav" aria-label="Main"></nav>
+    </div>
+  </header>
+
+  <main class="wrap" id="app"></main>
+
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <form id="base-form" class="base-form">
+        <label for="base-input">API base URL</label>
+        <input id="base-input" type="text" placeholder="same origin (leave blank) or http://localhost:8000" autocomplete="off">
+        <button type="submit" class="btn ghost small">Save</button>
+      </form>
+      <div class="health">
+        <span id="health-dot" class="dot" aria-hidden="true"></span>
+        <span id="health-text">API status unknown</span>
+        <button type="button" id="health-btn" class="link">Check health</button>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+services:
+  frontend:
+  backend:
+    container_name: fastapiService
+    build:
+      context:
+    environment:
+      POSTGRES_HOST: postgres
+    env_file:
+      - .env
+    command:
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  databases:
+    image: postgres:17.5-alpine
+    container_name: postgresDB
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    env_file:
+      - .env
+    ports:
+      - ${POSTGRES_PORT}:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $POSTGRES_DB -U $POSTGRES_USER"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
