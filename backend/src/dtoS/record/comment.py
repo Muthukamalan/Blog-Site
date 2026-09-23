@@ -5,7 +5,7 @@ from dataclasses import dataclass
 class CommentRecordDTO:
     id: int 
     body: str 
-    author_id: int 
+    user_id: int 
     post_id: int 
     created_at: datetime.datetime
     updated_at: datetime.datetime

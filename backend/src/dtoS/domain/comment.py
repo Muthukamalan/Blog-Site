@@ -8,7 +8,7 @@ from src.dtoS.record.comment import CommentRecordDTO
 class CommentDTO:
     id: int 
     body: str 
-    author: ProfileDTO
+    user: ProfileDTO
     created_at: datetime.datetime
     updated_at: datetime.datetime
 
@@ -16,12 +16,12 @@ class CommentDTO:
     def from_record(
             cls,
             record: CommentRecordDTO,
-            author: ProfileDTO
+            user: ProfileDTO
     )-> "CommentDTO":
         return cls(
             id=record.id,
             body=record.body,
-            author=author,
+            user=user,
             created_at=record.created_at,
             updated_at=record.updated_at,            
         )

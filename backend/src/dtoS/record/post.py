@@ -4,7 +4,7 @@ from dataclasses import dataclass
 @dataclass(frozen=True,slots=True)
 class PostRecordDTO:
     id: int 
-    author_id: int 
+    user_id: int 
     slug: str 
     title: str
     description: str 
@@ -15,16 +15,16 @@ class PostRecordDTO:
 @dataclass(frozen=True,slots=True)
 class PostFeedRecordDTO:
     id: int
-    author_id: int 
+    user_id: int 
     slug: str 
     title: str
     description: str 
     body: str 
     tags: list[str]
-    author_username: str
-    author_bio: str | None
-    author_image: str | None
-    author_following: bool
+    user_username: str
+    user_bio: str | None
+    user_image: str | None
+    user_following: bool
     favorited: bool
     favorites_count: int
     created_at: datetime.datetime

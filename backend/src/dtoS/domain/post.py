@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from src.dtoS.record.post import PostFeedRecordDTO,PostRecordDTO
 
 @dataclass(frozen=True,slots=True)
-class PostAuthorDTO:
+class PostuserDTO:
     username: str 
     bio:str = ""
     image: str | None = None 
@@ -13,13 +13,13 @@ class PostAuthorDTO:
 @dataclass(frozen=True,slots=True)
 class PostDTO:
     id: int 
-    author_id: int 
+    user_id: int 
     slug: str 
     title: str
     description: str  
     body: str 
     tags: list[str]
-    author:PostAuthorDTO
+    user:PostuserDTO
     favorited: bool  
     favorites_count: int 
     created_at:datetime.datetime
@@ -31,16 +31,16 @@ class PostDTO:
     
 
     @classmethod
-    def from_record(cls,record:PostRecordDTO,author:PostAuthorDTO,tags:list[str],favorited:bool,favorites_count:int)->"PostDTO":
+    def from_record(cls,record:PostRecordDTO,user:PostuserDTO,tags:list[str],favorited:bool,favorites_count:int)->"PostDTO":
         return cls(
             id=record.id,
-            author=record.author_id,
+            user=record.user_id,
             slug=record.slug,
             title = record.title,
             description = record.description,
             body = record.body,
             tags = tags,
-            author = author,
+            user = user,
             favorited = favorited ,
             favorites_count = favorites_count,
         )
@@ -49,17 +49,17 @@ class PostDTO:
     def from_feed_record(cls,record:PostFeedRecordDTO)->"PostDTO":
         return cls(
             id=record.id,
-            author=record.author_id,
+            user=record.user_id,
             slug=record.slug,
             title =record.title,
             description =record.description,
             body =record.body,
             tags =record.tags,
-            author =PostAuthorDTO(
-                username=record.author_username,
-                bio=record.author_bio,
-                image=record.author_image,
-                following=record.author_following
+            user =PostuserDTO(
+                username=record.user_username,
+                bio=record.user_bio,
+                image=record.user_image,
+                following=record.user_following
             ),
             favorited = record.favorited,
             favorites_count = record.favorites_count,

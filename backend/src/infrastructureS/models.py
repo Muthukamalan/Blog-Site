@@ -36,11 +36,11 @@ class Follower(Base):
 
 
 
-class Article(Base):
-    __tablename__ = "articles"
+class Post(Base):
+    __tablename__ = "posts"
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    author_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
     slug: Mapped[str] = mapped_column(nullable=False, unique=True)
     title: Mapped[str]
     description: Mapped[str]
@@ -57,11 +57,11 @@ class Tag(Base):
     created_at: Mapped[datetime]
 
 
-class ArticleTag(Base):
-    __tablename__ = "article_tags"
+class PostTag(Base):
+    __tablename__ = "post_tags"
 
-    article_id: Mapped[int] = mapped_column(
-        ForeignKey("articles.id", ondelete="CASCADE"), primary_key=True
+    post_id: Mapped[int] = mapped_column(
+        ForeignKey("posts.id", ondelete="CASCADE"), primary_key=True
     )
     tag_id: Mapped[int] = mapped_column(ForeignKey("tags.id"), primary_key=True)
     created_at: Mapped[datetime]
@@ -71,8 +71,8 @@ class Favorite(Base):
     __tablename__ = "favorites"
 
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), primary_key=True)
-    article_id: Mapped[int] = mapped_column(
-        ForeignKey("articles.id", ondelete="CASCADE"), primary_key=True
+    post_id: Mapped[int] = mapped_column(
+        ForeignKey("posts.id", ondelete="CASCADE"), primary_key=True
     )
     created_at: Mapped[datetime]
 
@@ -81,10 +81,10 @@ class Comment(Base):
     __tablename__ = "comments"
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    article_id: Mapped[int] = mapped_column(
-        ForeignKey("articles.id", ondelete="CASCADE"), nullable=False
+    post_id: Mapped[int] = mapped_column(
+        ForeignKey("posts.id", ondelete="CASCADE"), nullable=False
     )
-    author_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
     body: Mapped[str]
     created_at: Mapped[datetime]
     updated_at: Mapped[datetime] = mapped_column(nullable=True)
